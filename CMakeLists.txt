@@ -18,6 +18,8 @@ project(${PROJ_NAME}_firmware
     LANGUAGES C CXX ASM
 )
 
+add_compile_definitions(WIFI_SSID=\"$ENV{WIFI_SSID}\" WIFI_PASSWORD=\"$ENV{WIFI_PASSWORD}\")
+
 add_executable(${CMAKE_PROJECT_NAME} main.c)
 
 add_subdirectory(platform)
@@ -29,6 +31,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     hal
     platform_hal
 )
+
 
 # The pico SDK requires that certain SDK commands be called on the primary output, which we
 # can only do from the same directory as the list file that created that output. This hook
