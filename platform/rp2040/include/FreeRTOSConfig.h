@@ -81,9 +81,14 @@
 #define configUSE_DAEMON_TASK_STARTUP_HOOK      0
 
 /* Run time and task stats gathering related definitions. */
-#define configGENERATE_RUN_TIME_STATS           0
+#define configGENERATE_RUN_TIME_STATS           1
 #define configUSE_TRACE_FACILITY                1
-#define configUSE_STATS_FORMATTING_FUNCTIONS    0
+#define configUSE_STATS_FORMATTING_FUNCTIONS    1
+#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS() // if a specific timer init needs to be called before runtime stats it should go here
+extern uint64_t time_us_64(void);               // defined in hw_clocks.c
+#define RUN_TIME_STATS_time_us_64_divider       (1e6 / configTICK_RATE_HZ) // divider for proper runtime stats granularity
+#define portGET_RUN_TIME_COUNTER_VALUE()        (time_us_64() / RUN_TIME_STATS_time_us_64_divider) // function to use for run time stats timer
+
 
 /* Co-routine related definitions. */
 #define configUSE_CO_ROUTINES                   0

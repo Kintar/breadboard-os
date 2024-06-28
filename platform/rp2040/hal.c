@@ -1,5 +1,6 @@
 #include "hal.h"
 #include "pico/stdio.h"
+#include "hardware/timer.h"
 
 #ifdef HW_ONBOARD_LED
 #include "pico/printf.h"
@@ -14,4 +15,8 @@ bool hal_onboard_led_get() {
 
 void hal_init() {
     stdio_init_all();
+}
+
+uint64_t get_time_us(void){
+    return time_us_64();
 }

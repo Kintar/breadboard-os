@@ -11,8 +11,14 @@ static void main_task(void *taskParameters) {
     TickType_t delay_ticks = (TickType_t)(2500 * configTICK_RATE_HZ / 1000); // convert millisecond delay to OS ticks
 
     while (true) {
-        puts("ba-bump...");
+        int tasks_maxlen = 40 * uxTaskGetNumberOfTasks();
+        char *ps_msg = pvPortMalloc(tasks_maxlen);
 
+        // call FreeRTOS vTaskList API and print to CLI
+        vTaskListTasks(ps_msg, tasks_maxlen); // note this is a blocking, processor intensive function
+        puts(ps_msg);
+        puts("\n");
+        vPortFree(ps_msg);
         vTaskDelay(delay_ticks);
     }
 }
