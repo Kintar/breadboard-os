@@ -13,7 +13,7 @@ if(EXISTS ${PLATFORM_DIR}/platform_include.cmake)
     include(${PLATFORM_DIR}/platform_include.cmake)
 endif()
 
-project(${PROJ_NAME}_firmware
+project(${PROJ_NAME}
     VERSION ${PROJ_VER}
     LANGUAGES C CXX ASM
 )
