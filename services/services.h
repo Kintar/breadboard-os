@@ -26,7 +26,6 @@
 #include "FreeRTOS.h"
 #include "lfs.h"
 
-
 /*******************************************************************************
  * Services - Dynamic tasks to run in FreeRTOS.
  *            Services can be launched at boot or started/suspended/stopped at
@@ -116,6 +115,15 @@
 #define STACK_WATCHDOG  configMINIMAL_STACK_SIZE // 256 by default
 #define STACK_HEARTBEAT configMINIMAL_STACK_SIZE
 
+#if HW_WIFI
+#define SERVICE_NAME_WIFI   wifi
+#define PRIORITY_WIFI       1
+#define REPEAT_WIFI         1
+#define DELAY_WIFI          250
+#define STACK_WIFI          configMINIMAL_STACK_SIZE
+
+BaseType_t wifi_service(void);
+#endif
 
 /************************
  * Service Functions

@@ -9,3 +9,10 @@ target_sources(${PROJ_NAME} PRIVATE
     watchdog_service.c
     heartbeat_service.c
 )
+
+if(HW_WIFI)
+    message("Hardware supports wifi. Including wifi_service.c")
+    target_sources(${PROJ_NAME} PRIVATE
+        wifi_service.c
+    )
+endif()

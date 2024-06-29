@@ -38,13 +38,10 @@ void hardware_init(void) {
 
     // on pico w, we need to initialize the wifi chip
 #ifdef USING_CYW43
-    if(cyw43_arch_init()) {
-        uart_puts(UART_ID_CLI, timestamp());
-        uart_puts(UART_ID_CLI, "Failed to initialize CYW43 hardware.\r\n");
-    } else {
-        uart_puts(UART_ID_CLI, timestamp());
-        uart_puts(UART_ID_CLI, "Initialized onboard wireless module\r\n");
-    }
+
+#if !HW_WIFI // If we're using the wifi system, we MUST allow the wifi service to initialize the cyw43 chip
+    onboard_led_init();
+#endif
 #endif
 
     // get the last reset reason string

@@ -22,6 +22,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include "pico/cyw43_arch.h"
 
 
 static void prvTaskManagerTask(void *pvParameters);
@@ -80,7 +81,6 @@ static void prvTaskManagerTask(void *pvParameters)
             service_descriptors[i].service_func();
         }
     }
-
 
     // At this point the system is fully running. Print a message
     cli_uart_puts(timestamp());

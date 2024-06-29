@@ -310,7 +310,7 @@ void cli_uart_puts(const char *print_string);
 *************************/
 
 // Enable Aux UART - setting to false will disable (not initialized at boot)
-#define HW_USE_AUX_UART true
+#define HW_USE_AUX_UART false
 
 // AUX UART Settings
 #define UART_ID_AUX             uart1
@@ -368,7 +368,7 @@ int aux_uart_read(uint8_t *rx_data, size_t rx_len);
 *************************/
 
 // Enable I2C0 peripheral - setting to false will disable (not initialized at boot)
-#define HW_USE_I2C0 true
+#define HW_USE_I2C0 false
 
 // I2C0 Settings
 #define I2C0_ID            i2c0
@@ -425,7 +425,7 @@ int i2c0_read(uint8_t addr, uint8_t *read_data, size_t length);
 *************************/
 
 // Enable SPI0 peripheral - setting to false will disable (not initialized at boot)
-#define HW_USE_SPI0 true
+#define HW_USE_SPI0 false
 
 // SPI0 Settings
 #define SPI0_ID             spi0
@@ -495,9 +495,6 @@ int spi0_read_registers(uint8_t cs_pin, uint8_t reg_addr, uint8_t *read_buf, uin
 *************************/
 
 // Enable onboard LED - setting to false will disable (not initialized at boot)
-// note - if using a Pico W board, the onboard LED is connected to the CYW43 radio -
-// this would need the WiFi chip initialized, which we do not currently do. Thus
-// the onboard LED will be default disabled in that case.
 #define HW_USE_ONBOARD_LED true
 
 // On-board LED Settings
@@ -544,8 +541,8 @@ bool onboard_led_get(void);
 *************************/
 
 // Watchdog Timer Settings
-#define WATCHDOG_DELAY_MS        1000 // default watchdog timer delay
-#define WATCHDOG_DELAY_REBOOT_MS 1000 // delay for reboot function
+#define WATCHDOG_DELAY_MS        5000 // default watchdog timer delay
+#define WATCHDOG_DELAY_REBOOT_MS 10000 // delay for reboot function
 
 /**
 * @brief Enables the watchdog timer.
@@ -841,7 +838,7 @@ flash_usage_t onboard_flash_usage(void);
 **************************************/
 
 // Enable ADC peripheral - setting to false will disable all ADCs (not initialized at boot)
-#define HW_USE_ADC true
+#define HW_USE_ADC false
 
 // ADC channel settings
 #define ADC0_GPIO 26 // this is ADC0
