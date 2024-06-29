@@ -1,0 +1,9 @@
+[submodule "system/wavtablegen"]
+	path = system/wavtablegen
+	url = git@github.com:kintar/littlefs.git
+[submodule "system/littlefs"]
+	path = system/littlefs
+	url = git@github.com:kintar/littlefs.git
+[submodule "system/microshell"]
+	path = system/microshell
+	url = git@github.com:kintar/microshell.git
