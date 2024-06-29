@@ -13,11 +13,12 @@
 
 // Possible error codes returned by HAL functions.
 typedef enum {
-  Err_Success,
-  Err_GeneralError,
-  Err_InvalidParameter,
-  Err_OutOfMemory,
-  Err_Timeout,
+  HAL_ERR_SUCCESS,
+  HAL_ERR_GENERAL_ERROR,
+  HAL_ERR_INVALID_PARAMETER,
+  HAL_ERR_OUT_OF_MEMORY,
+  HAL_ERR_TIMEOUT,
+  HAL_ERR_UNSUPPORTED,
 } hal_err_code_t;
 
 /**
@@ -50,6 +51,9 @@ bool hal_get_last_err_msg(char *msg_buffer, uint8_t buf_len);
  */
 void hal_init();
 
+/***********************************************************************
+ * Interfaces to the onboard LED
+ */
 #if HW_ONBOARD_LED
 
 void hal_onboard_led_set(bool state);
@@ -58,6 +62,9 @@ bool hal_onboard_led_get();
 
 #endif
 
+/***********************************************************************
+ * Interfaces to the board's GPIO pins
+ */
 #if HW_GPIO
 
 // todo: it's probably a good idea to allow the board-hal library to define the type of gpio values
@@ -67,17 +74,34 @@ uint32_t hal_gpio_get(uint8_t pin);
 
 #endif
 
+/***********************************************************************
+ * Interfaces to I2C communication.
+ *
+ * Note: if the board does not have i2c hardware support, the HAL implementer
+ * is free to provide a bitbang library for it, but should NOT present it
+ * as hardware-supported. Using a timing-critical library in FreeRTOS
+ * requires careful consideration of task priorities and preemption.
+ *
+ * TODO: Need a way to identify boards without dedicated i2c hardware?
+ */
 #if HW_I2C
 #endif
 
+/***********************************************************************
+ * Interfaces to the board's WiFi subsystem.
+ */
 #if HW_WIFI
+/**
+ * Standard WiFi authentication types. A board whose WiFi stack does not implement
+ * a given auth scheme should return HAL_ERR_UNSUPPORTED.
+ */
 typedef enum {
-  None,
-  WPA,
-  WPA2,
-  WPA2_PSK_TKIP,
-  WPA2_PSK_AES,
-  WPA2_PSK_MIXED
+  HW_WIFI_AUTH_NONE,
+  HW_WIFI_AUTH_WPA,
+  HW_WIFI_AUTH_WPA2,
+  HW_WIFI_AUTH_WPA2_PSK_TKIP,
+  HW_WIFI_AUTH_WPA2_PSK_AES,
+  HW_WIFI_AUTH_WPA2_PSK_MIXED
 } hal_wifi_auth_t;
 
 hal_err_code_t hal_wifi_init();
@@ -94,6 +118,9 @@ hal_err_code_t hal_wifi_connect(const char *ssid, const char *password, hal_wifi
 
 #endif
 
+/***********************************************************************
+ * Interfaces to the board's dedicated UART.
+ */
 #if HW_UART
 
 hal_err_code_t hal_uart_init();

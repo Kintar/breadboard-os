@@ -1,9 +1,14 @@
-set(PICO_BOARD ${BOARD})
-set(PICO_PLATFORM ${PLATFORM})
+if(NOT TARGET _rp2040_platform_include_defined)
+    add_library(_rp2040_platform_include_defined INTERFACE)
+    message(STATUS "rp2040 platform_include.cmake loaded")
 
-# Pull in Raspberry Pi Pico SDK (must be before project)
-include(${PLATFORM_DIR}/pico_sdk_import.cmake)
+    set(PICO_BOARD ${BOARD})
+    set(PICO_PLATFORM ${PLATFORM})
 
-if(PICO_SDK_VERSION_STRING VERSION_LESS "1.5.0")
-    message(FATAL_ERROR "Raspberry Pi Pico SDK version 1.5.0 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
+    # Pull in Raspberry Pi Pico SDK (must be before project)
+    include(${PLATFORM_DIR}/pico_sdk_import.cmake)
+
+    if(PICO_SDK_VERSION_STRING VERSION_LESS "1.5.0")
+        message(FATAL_ERROR "Raspberry Pi Pico SDK version 1.5.0 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
+    endif()
 endif()

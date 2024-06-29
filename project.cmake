@@ -11,4 +11,4 @@ set(PLATFORM rp2040)
 ##########################################################
 # The specific board in use. See the platform documentation
 # for a full list.
-set(BOARD pico_w)
+set(BOARD pico)

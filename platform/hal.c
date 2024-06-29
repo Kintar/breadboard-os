@@ -2,11 +2,11 @@
 
 const char *hal_errToA(hal_err_code_t err) {
     switch (err) {
-        case Err_Success:return "success";
-        case Err_GeneralError:return "general error";
-        case Err_InvalidParameter:return "invalid parameter";
-        case Err_OutOfMemory:return "out of memory";
-        case Err_Timeout:return "timeout";
+        case HAL_ERR_SUCCESS:return "success";
+        case HAL_ERR_GENERAL_ERROR:return "general error";
+        case HAL_ERR_INVALID_PARAMETER:return "invalid parameter";
+        case HAL_ERR_OUT_OF_MEMORY:return "out of memory";
+        case HAL_ERR_TIMEOUT:return "timeout";
         default:return "unknown error";
     }
 }

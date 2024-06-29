@@ -1,3 +1,12 @@
+
+/**
+ * @file
+ * Provides rp-2040-specific implementations of the bbos hal.h headers.
+ *
+ * @author Alec Lanter
+ * @date 2024-06-29
+ */
+
 #include "hal.h"
 #include "pico/stdio.h"
 #include "hardware/timer.h"
