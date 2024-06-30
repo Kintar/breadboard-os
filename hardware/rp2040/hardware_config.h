@@ -76,7 +76,7 @@ void hardware_init(void);
 *******************************************************************************/
 
 // Enable GPIO peripheral - setting to false will disable (not initialized at boot)
-#define HW_USE_GPIO true
+#define HW_USE_GPIO false
 
 // define the total number of GPIO pins used here
 // this should match the highest `GPIO_x` defines below plus one

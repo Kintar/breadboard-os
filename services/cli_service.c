@@ -25,7 +25,7 @@
 #include "task.h"
 #include "queue.h"
 
-#define PRINT_MOTD_AT_BOOT true
+#define PRINT_MOTD_AT_BOOT false
 
 
 static void prvCliTask(void *pvParameters); // microshell cli task
